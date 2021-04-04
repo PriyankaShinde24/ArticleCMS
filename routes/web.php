@@ -14,9 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $articles = \App\Models\Articles::latest()->get();
+    return view('welcome')->with(compact('articles'));
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('articles', 'ArticlesController');
+
+Route::resource('tags', 'TagController');
+
+Route::resource('comments', 'CommentController');
+
+Route::resource('articleTags', 'ArticleTagController');
