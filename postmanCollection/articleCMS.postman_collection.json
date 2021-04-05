@@ -1,0 +1,198 @@
+{
+	"id": "f536c8f7-4470-d76e-7572-41bae5a49cc4",
+	"name": "articleCMS",
+	"description": "",
+	"order": [
+		"b54bea6f-505e-5f0d-e2fb-3f77a5bb36f7",
+		"82f243c8-e3dd-dccd-9fd9-407420f6f1fe",
+		"42da9d0c-e93c-951f-6c1f-b4439b257b18",
+		"3a836dc2-29a6-afe1-8164-8e03be55c09f"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1617627873903,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "3a836dc2-29a6-afe1-8164-8e03be55c09f",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nemail: priyankashinde2224@gmail.com\npassword: priyankashinde2224\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "priyankashinde2224@gmail.com",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "priyankashinde2224",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8000/api/login/",
+			"folder": "09ddd67c-13fe-4626-8dd4-fc64f1fc27b7",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "priyankashinde2224@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "priyankashinde2224",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "priyankashinde2224@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "priyankashinde2224",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "tests[\"response code is 401\"] = responseCode.code === 401;\ntests[\"response has WWW-Authenticate header\"] = (postman.getResponseHeader('WWW-Authenticate'));\n\nvar authenticateHeader = postman.getResponseHeader('WWW-Authenticate'),\n    realmStart = authenticateHeader.indexOf('\"',authenticateHeader.indexOf(\"realm\")) + 1 ,\n    realmEnd = authenticateHeader.indexOf('\"',realmStart),\n    realm = authenticateHeader.slice(realmStart,realmEnd),\n    nonceStart = authenticateHeader.indexOf('\"',authenticateHeader.indexOf(\"nonce\")) + 1,\n    nonceEnd = authenticateHeader.indexOf('\"',nonceStart),\n    nonce = authenticateHeader.slice(nonceStart,nonceEnd);\n    \npostman.setGlobalVariable('echo_digest_realm', realm);\npostman.setGlobalVariable('echo_digest_nonce', nonce);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1617643405651,
+			"name": "Login",
+			"description": "",
+			"collectionId": "f536c8f7-4470-d76e-7572-41bae5a49cc4",
+			"responses": []
+		},
+		{
+			"id": "42da9d0c-e93c-951f-6c1f-b4439b257b18",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8000/api/articles/13",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "priyankashinde2224@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "priyankashinde2224",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1617643628277,
+			"name": "ShowArticle",
+			"description": "\t",
+			"collectionId": "f536c8f7-4470-d76e-7572-41bae5a49cc4",
+			"responses": []
+		},
+		{
+			"id": "82f243c8-e3dd-dccd-9fd9-407420f6f1fe",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8000/api/articles",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1617643465737,
+			"name": "ArticleListing",
+			"description": "\t",
+			"collectionId": "f536c8f7-4470-d76e-7572-41bae5a49cc4",
+			"responses": []
+		},
+		{
+			"id": "b54bea6f-505e-5f0d-e2fb-3f77a5bb36f7",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8000/api/articles?searchText=lorem",
+			"queryParams": [
+				{
+					"key": "searchText",
+					"value": "lorem",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1617643454871,
+			"name": "ArticleSearch",
+			"description": "\t",
+			"collectionId": "f536c8f7-4470-d76e-7572-41bae5a49cc4",
+			"responses": []
+		}
+	]
+}
