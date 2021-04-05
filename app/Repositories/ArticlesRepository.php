@@ -20,7 +20,7 @@ class ArticlesRepository extends BaseRepository
         'user_id',
         'title',
         'description',
-        'image'
+        'image',
     ];
 
     /**

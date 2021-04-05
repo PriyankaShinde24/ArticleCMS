@@ -36,7 +36,7 @@ class Articles extends Model
         'user_id',
         'title',
         'description',
-        'image'
+        'image',
     ];
 
     /**
@@ -61,7 +61,7 @@ class Articles extends Model
         'user_id' => 'required',
         'title' => 'required|string|max:200',
         'description' => 'required|string',
-        'image' => 'nullable|string',
+        
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
@@ -72,7 +72,7 @@ class Articles extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id');
+        return $this->belongsTo(\App\User::class, 'user_id');
     }
 
     /**

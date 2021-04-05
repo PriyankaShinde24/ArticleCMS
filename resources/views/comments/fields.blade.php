@@ -1,23 +1,21 @@
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Article Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('article_id', 'Article Id:') !!}
-    {!! Form::number('article_id', null, ['class' => 'form-control']) !!}
+    {!! Form::hidden('article_id', $articles->id, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Text Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('text', 'Text:') !!}
+    {!! Form::label('text', 'Your Comment:') !!}
     {!! Form::textarea('text', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('comments.index') }}" class="btn btn-secondary">Cancel</a>
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}   
+    <a href="{{ url('/') }}" class="btn btn-secondary">Cancel</a>
 </div>

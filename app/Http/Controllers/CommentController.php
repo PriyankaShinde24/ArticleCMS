@@ -31,8 +31,7 @@ class CommentController extends AppBaseController
     {
         $comments = $this->commentRepository->all();
 
-        return view('comments.index')
-            ->with('comments', $comments);
+        return view('comments.index')->with('comments', $comments);
     }
 
     /**
@@ -60,7 +59,7 @@ class CommentController extends AppBaseController
 
         Flash::success('Comment saved successfully.');
 
-        return redirect(route('comments.index'));
+        return redirect(url()->previous());
     }
 
     /**

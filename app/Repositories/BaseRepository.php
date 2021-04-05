@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 
 abstract class BaseRepository
@@ -87,10 +88,67 @@ abstract class BaseRepository
     {
         $query = $this->model->newQuery();
 
-        if (count($search)) {
+        /*if (count($search)) {
             foreach($search as $key => $value) {
                 if (in_array($key, $this->getFieldsSearchable())) {
                     $query->where($key, $value);
+                }
+            }
+        }*/
+        //dd($search);
+        if (count($search)) {
+            
+            foreach($search as $key => $value) {   
+                
+                switch ($key) {                    
+                    case 'OR':
+                        //dd($value);
+                        $query->orWhere(function($query) use ($value){                            
+                            $i = 0;
+                            foreach ($value as $key_1 => $or1) {                                 
+                                $query->where($key_1, $or1[0], $or1[1]);    
+                            }
+                        });
+                        break;
+                    case 'BETWEEN':
+                        // Added by Priyanka
+                        foreach ($value as $key_1 => $or1) { 
+                            if (in_array($key_1, $this->getFieldsSearchable())) {
+                                $query->whereBetween($key_1, [$or1[0], $or1[1]]);
+                            }
+                        }
+
+                        break;
+                    case 'IN':
+                        foreach ($value as $key_1 => $in1) {
+
+                            if (in_array($in1[0], $this->getFieldsSearchable())/* || $key == 'or'*/) {
+                                $query->whereIn($in1[0], $in1[1]);
+                            }
+                        }
+                        break;
+                    case 'LIKE': //$conditions = ['LIKE' => ['fullname'=>trim($input['fullname'])]];
+                        $query->where(function($query) use ($value){                            
+                            $i = 0;
+                            foreach ($value as $key_1 => $or1) {                                   
+                                if($i==0) {
+                                    if (in_array($key_1, $this->getFieldsSearchable()))                                        
+                                            $query->where($key_1, 'like' ,"%".$or1."%");
+                                }else {
+                                    if (in_array($key_1, $this->getFieldsSearchable()))                                        
+                                            $query->orWhere($key_1, 'like' ,"%".$or1."%");
+                                }                                
+                                $i++;
+                            }
+                        });
+                        break;
+                    default:
+                        if (in_array($key, $this->getFieldsSearchable())/* || $key == 'or'*/) {
+
+                            $query->where($key, $value[0], $value[1]);
+
+                        }
+                        break;
                 }
             }
         }
@@ -102,7 +160,8 @@ abstract class BaseRepository
         if (!is_null($limit)) {
             $query->limit($limit);
         }
-
+        /*$sql = Str::replaceArray('?', $query->getBindings(), $query->toSql());
+        dd($sql);*/
         return $query;
     }
 
