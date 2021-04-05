@@ -19,7 +19,7 @@ class ArticleTagsTableSeeder extends Seeder
         $articles = Articles::all()->pluck('id')->toArray();
         $tags = Tag::all()->pluck('id')->toArray();
         
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             ArticleTag::create(
                 [                
                 'article_id' => $faker->randomElement($articles),

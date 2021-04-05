@@ -17,7 +17,7 @@ class ArticlesTableSeeder extends Seeder
         
         $users = User::all()->pluck('id')->toArray();
         
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Articles::create(
                 [
                 'user_id' => $faker->randomElement($users),

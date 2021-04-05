@@ -19,7 +19,7 @@ class CommentsTableSeeder extends Seeder
         $users = User::all()->pluck('id')->toArray();
         $articles = Articles::all()->pluck('id')->toArray();
         
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Comment::create(
                 [
                 'user_id' => $faker->randomElement($users),
