@@ -38,7 +38,7 @@ class ArticleAPIController extends AppBaseController
     
      public function show($article_id){
         $article = \App\Models\Articles::find($article_id);
-        return response()->json(['post' => $article], 200);
+        return response()->json(['article' => $article], 200);
     }
     
 }
